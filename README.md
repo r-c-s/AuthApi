@@ -5,5 +5,5 @@ Java API for Auth service
 ##### Install
 
 <pre>
-mvn clean package
+mvn clean install
 </pre>
