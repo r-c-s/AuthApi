@@ -7,7 +7,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import java.util.Optional;
 
-@Service
 public class AuthUtils {
 
     public Optional<AuthenticatedUser> tryGetLoggedInUser(ServletRequest request) {

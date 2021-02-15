@@ -1,12 +1,9 @@
 package rcs.auth.api;
 
-import org.springframework.stereotype.Component;
-
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-@Component
 public class AuthenticationFilter implements Filter {
 
     private final RequestAuthenticationService requestAuthenticationService;

@@ -10,8 +10,6 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-@Service
-@PropertySource("file:${app.properties}")
 public class RequestAuthenticationService {
 
     private AuthService authService;
