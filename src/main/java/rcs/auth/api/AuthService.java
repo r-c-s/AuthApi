@@ -28,7 +28,10 @@ public class AuthService {
         params.set("username", creds.getUsername());
         params.set("password", creds.getPassword());
 
-        HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity<>(params, new HttpHeaders());
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+        HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity<>(params, headers);
 
         ResponseEntity<Void> response = restTemplate.exchange(
                 createUrl("/login"),
@@ -48,7 +51,7 @@ public class AuthService {
         HttpEntity<Object> request = new HttpEntity<>(null, headers);
 
         return restTemplate.exchange(
-                createUrl("/api/authenticate"),
+                createUrl("/authenticate"),
                 HttpMethod.GET,
                 request,
                 AuthenticatedUser.class);
@@ -66,12 +69,12 @@ public class AuthService {
                 "password", creds.getPassword());
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
         HttpEntity<Map<String, String>> request = new HttpEntity<>(payload, headers);
 
         return restTemplate.exchange(
-                createUrl("/api/users"),
+                createUrl("/users"),
                 HttpMethod.POST,
                 request,
                 Void.class);
@@ -86,7 +89,7 @@ public class AuthService {
                     HttpEntity<Map<String, String>> request = new HttpEntity<>(null, headers);
 
                     return restTemplate.exchange(
-                            createUrl("/api/users/" + usernameToDelete),
+                            createUrl("/users/" + usernameToDelete),
                             HttpMethod.DELETE,
                             request,
                             Void.class);
@@ -108,7 +111,7 @@ public class AuthService {
                     HttpEntity<Object> request = new HttpEntity<>(payload, headers);
 
                     return restTemplate.exchange(
-                            createUrl("/api/users/" + usernameToUpdate + "/authority"),
+                            createUrl("/users/" + usernameToUpdate + "/authority"),
                             HttpMethod.PUT,
                             request,
                             Void.class);
@@ -127,7 +130,7 @@ public class AuthService {
                     HttpEntity<Object> request = new HttpEntity<>(payload, headers);
 
                     return restTemplate.exchange(
-                            createUrl("/api/users/" + usernameToUpdate + "/password"),
+                            createUrl("/users/" + usernameToUpdate + "/password"),
                             HttpMethod.PUT,
                             request,
                             Void.class);
